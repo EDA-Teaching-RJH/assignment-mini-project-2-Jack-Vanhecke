@@ -1,8 +1,18 @@
 import csv
 
+def add_app(): #app == application
+    
+
 def main():
 
-    print("Hello World")
+    print("---MENU---")
+    print("1. Add Job Application ")
+    print("2. View Job Application(s) ")
+    print("3. Search For Job Application(s) ")
+    print("4. Update Job Application ")
+    print("5. Save Job Applications to file ")
+    print("6. Download Job Applications from file ")
+    option = input("7. Exit ")
 
 if __name__ == "__main__":
     main()
