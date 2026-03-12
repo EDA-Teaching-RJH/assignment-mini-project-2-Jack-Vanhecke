@@ -1,7 +1,8 @@
-
+import csv # for handleing CSV files
+import re  # for REGEX
 
 class Application_Format:
-    def __init__(self):
+    def __init__(self, company, title, date, status, email, notes):
         self.company = company
         self.title = title
         self.date = date
@@ -14,28 +15,33 @@ class Application_Format:
 
 class Opperations:
 
-    def add_app(self):
+    def Validate_Status(self, status):
+        if status == "Applied" or status == "Interview" or status == "Accepted" or status == "Rejected":
+            return status
+        else:
+            return False
+        
+    def Validate_Email(self, email):
+        if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+            return True
+        return False
 
+    def add_app(self):
         print("Add")
         
     def view_app(self):
-
         print("View")
 
     def search_app(self):
-
         print("Search")
 
     def update_app(self):
-
         print("Update")
 
     def save_app(self):
-
         print("Save")
 
     def load_app(self):
-
         print("Load")
 
 def main():
@@ -44,7 +50,7 @@ def main():
 
     while True:                              # Loops the code indefinitely, unless exit option is entered
 
-        print("---MENU---")                      # Menu options
+        print("---MENU---")                  # Menu options
         print("1. Add Job Application ")
         print("2. View Job Application(s) ")
         print("3. Search For Job Application(s) ")
