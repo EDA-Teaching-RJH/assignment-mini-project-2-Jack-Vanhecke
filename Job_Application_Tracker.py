@@ -1,4 +1,4 @@
-import csv # for handleing CSV files
+import csv # for handling CSV files
 import re  # for REGEX
 from datetime import datetime # for handling dates
 
@@ -54,7 +54,7 @@ class Opperations:
             return email
         return True
     
-    def add_app(self):
+    def add_app(self):                                                      # Adds a job application to the application list, with all the required data points, and validates each input to ensure it is acceptable and makes logical sense
         while True:
             company = input("Company Name: ")
             if self.Validate_Company(company):
@@ -68,7 +68,7 @@ class Opperations:
         while True:
             date = input("Did you apply today or another date? (Enter 'today' or a date in the format DD-MM-YYYY) ")
             if date == "today":
-                date = datetime.now().strftime("%d-%m-%Y")
+                date = datetime.now().strftime("%d-%m-%Y")              # datetime.now() gets the current date and time, .strftime() formats it to the specified format (DD-MM-YYYY in this case)
                 break
             elif self.Validate_Application_Date(date):
                 date = self.Validate_Application_Date(date)
@@ -79,12 +79,10 @@ class Opperations:
             if self.Validate_Status(status):
                 break
         
-        
         while True:
             email = input("Email Contact: ")
             if self.Validate_Email(email):
                 break
-            
         
         notes = input("Notes: ")
 
@@ -93,14 +91,31 @@ class Opperations:
         print("Application added successfully.")
 
     def view_app(self):
-        for _ in range(len(self.application)):
-            print(self.application[_].format())
+        if len(self.application) == 0:
+            print("No unsaved applications to view.")
+            return
+        else:
+            for _ in range(len(self.application)):
+                print(self.application[_].format())
+            return
 
     def search_app(self):
         print("Search")
 
     def update_app(self):
-        print("Update")
+        self.view_app()
+        try:
+            index = int(input("Enter the number of the job application you want to update: "))
+            app = self.applications[index]
+        except:
+            print("Invalid input. Please enter a valid number.")
+            return
+        new_status = input("Enter the new status (Applied / Interview / Offer / Rejected): ")
+        if self.Validate_Status(new_status):
+            app.status = new_status
+            print("Status updated successfully.")
+        else:
+            print("Invalid status. Status not updated.")
 
     def save_app(self):
         print("Save")
