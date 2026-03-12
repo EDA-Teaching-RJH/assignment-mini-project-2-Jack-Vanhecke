@@ -40,9 +40,7 @@ class Opperations:
             return False
         if date == "":
             print("Application date cannot be empty. Enter a valid date in the format DD-MM-YYYY.")
-            return date
-        elif datetime.strptime(date, "%d-%m-%Y"):
-            return date
+            return False
         return True
 
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
