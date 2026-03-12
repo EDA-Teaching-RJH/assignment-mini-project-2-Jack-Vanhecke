@@ -1,4 +1,4 @@
-import csv
+
 
 class Application_Format:
     def __init__(self):
@@ -13,45 +13,46 @@ class Application_Format:
         return[self.company, self.title, self.date, self.status, self.email, self.notes]
 
 class Opperations:
+
     def add_app(self):
 
-        print()
+        print("Add")
         
     def view_app(self):
 
-        print()
+        print("View")
 
     def search_app(self):
 
-        print()
+        print("Search")
 
     def update_app(self):
 
-        print()
+        print("Update")
 
     def save_app(self):
 
-        print()
+        print("Save")
 
     def load_app(self):
 
-        print()
+        print("Load")
 
 def main():
 
     Changes = Opperations()
 
-    print("---MENU---")                      # Menu options
-    print("1. Add Job Application ")
-    print("2. View Job Application(s) ")
-    print("3. Search For Job Application(s) ")
-    print("4. Update Job Application ")
-    print("5. Save Job Applications to file ")
-    print("6. Download Job Applications from file ")
-    print("7. Exit ")
-    option = input("Please enter your option. ")
-
     while True:                              # Loops the code indefinitely, unless exit option is entered
+
+        print("---MENU---")                      # Menu options
+        print("1. Add Job Application ")
+        print("2. View Job Application(s) ")
+        print("3. Search For Job Application(s) ")
+        print("4. Update Job Application ")
+        print("5. Save Job Applications to file ")
+        print("6. Download Job Applications from file ")
+        print("7. Exit ")
+        option = input("Please enter your option. ")
 
         if option == "1":                    # Chooses the definition within the Tracker class to run dependant on the option chosen
             Changes.add_app()
