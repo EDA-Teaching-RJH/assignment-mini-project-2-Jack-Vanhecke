@@ -1,18 +1,43 @@
 import csv
 
-def add_app(): #app == application
-    
+class Tracker:
+    def add_app(self): #app == application
+
+        print()
+
 
 def main():
 
-    print("---MENU---")
+    Tracker = Tracker()
+
+    print("---MENU---")                      # Menu options
     print("1. Add Job Application ")
     print("2. View Job Application(s) ")
     print("3. Search For Job Application(s) ")
     print("4. Update Job Application ")
     print("5. Save Job Applications to file ")
     print("6. Download Job Applications from file ")
-    option = input("7. Exit ")
+    print("7. Exit ")
+    option = input("Please enter your option. ")
+
+    while True:                              # Loops the code indefinitely, unless exit option is entered
+
+        if option == "1":                    # Chooses the definition within the Tracker class to run dependant on the option chosen
+            Tracker.add_app()
+        elif option == "2":
+            Tracker.view_app()
+        elif option == "3":
+            Tracker.search()
+        elif option == "4":
+            Tracker.update_app()
+        elif option == "5":
+            Tracker.save()
+        elif option == "6":
+            Tracker.load()
+        elif option == "7":
+            break
+        else:
+            print("Invalid choice")
 
 if __name__ == "__main__":
     main()
