@@ -37,20 +37,6 @@ class Opperations:
         elif datetime.strptime(date, "%d-%m-%Y"):
             return date
         return True
-        
-
-
-
-
-
-
-
-
-                                                # Blank to let me figure out how im working the dates
-        print(datetime.datetime.now().strftime('%d/%m/%Y'))
-
-
-
 
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
         if re.search(r'^(Applied|Interview|Accepted|Rejected)$', status):
@@ -105,10 +91,10 @@ class Opperations:
         appended_app = Application_Format(company, title, date, status, email, notes)
         self.application.append(appended_app)
         print("Application added successfully.")
-        print(self.application[0].format()) # For testing purposes, to show the application has been added to the list
 
     def view_app(self):
-        print("View")
+        for _ in range(len(self.application)):
+            print(self.application[_].format())
 
     def search_app(self):
         print("Search")
@@ -130,7 +116,7 @@ def main():
 
         print("---MENU---")                  # Menu options
         print("1. Add Job Application ")
-        print("2. View Job Application(s) ")
+        print("2. View Unsaved Job Application(s) ")
         print("3. Search For Job Application(s) ")
         print("4. Update Job Application ")
         print("5. Save Job Applications to file ")
@@ -151,6 +137,7 @@ def main():
         elif option == "6":
             Changes.load_app()
         elif option == "7":
+            print("Exiting program. Goodbye!")
             break
         else:
             print("Invalid choice")
