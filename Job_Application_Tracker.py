@@ -13,10 +13,29 @@ class Application_Format:
         return[self.company, self.title, self.date, self.status, self.email, self.notes]
 
 class Opperations:
-    def add_app(self): #app == application
+    def add_app(self):
+
+        print()
+        
+    def view_app(self):
 
         print()
 
+    def search_app(self):
+
+        print()
+
+    def update_app(self):
+
+        print()
+
+    def save_app(self):
+
+        print()
+
+    def load_app(self):
+
+        print()
 
 def main():
 
