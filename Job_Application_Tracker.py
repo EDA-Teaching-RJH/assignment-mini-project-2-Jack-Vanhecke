@@ -1,6 +1,18 @@
 import csv
 
-class Tracker:
+class Application_Format:
+    def __init__(self):
+        self.company = company
+        self.title = title
+        self.date = date
+        self.status = status
+        self.email = email
+        self.notes = notes
+
+    def format(self):
+        return[self.company, self.title, self.date, self.status, self.email, self.notes]
+
+class Opperations:
     def add_app(self): #app == application
 
         print()
@@ -8,7 +20,7 @@ class Tracker:
 
 def main():
 
-    Tracker = Tracker()
+    Changes = Opperations()
 
     print("---MENU---")                      # Menu options
     print("1. Add Job Application ")
@@ -23,17 +35,17 @@ def main():
     while True:                              # Loops the code indefinitely, unless exit option is entered
 
         if option == "1":                    # Chooses the definition within the Tracker class to run dependant on the option chosen
-            Tracker.add_app()
+            Changes.add_app()
         elif option == "2":
-            Tracker.view_app()
+            Changes.view_app()
         elif option == "3":
-            Tracker.search()
+            Changes.search_app()
         elif option == "4":
-            Tracker.update_app()
+            Changes.update_app()
         elif option == "5":
-            Tracker.save()
+            Changes.save_app()
         elif option == "6":
-            Tracker.load()
+            Changes.load_app()
         elif option == "7":
             break
         else:
