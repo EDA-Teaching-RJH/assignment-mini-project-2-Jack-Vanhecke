@@ -18,62 +18,78 @@ class Opperations:
 
     application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
 
-    def Validate_Status(self, status):                                      #Ensures the application Status is deemed as valid
+    def Validate_Company(self, company):                                    #Ensures the company name is not empty
+        if company == "":
+            print("Company name cannot be empty. Enter a valid company name.")
+            return True
+        return company
+    
+    def Validate_Job_Title(self, title):                                    #Ensures the job title is not empty
+        if title == "":
+            print("Job title cannot be empty. Enter a valid job title.")
+            return True
+        return title
+    
+    def Validate_Application_Date(self, date):                              #Ensures the application date is not empty and in a valid format
+        if date == "":
+            print("Application date cannot be empty. Enter a valid date in the format DD-MM-YYYY.")
+            return True
+        elif datetime.strptime(date, "%d-%m-%Y"):
+            return True
+        return date
+        
+
+
+
+
+
+
+
+        
+                                                # Blank to let me figure out how im working the dates
+        print(datetime.datetime.now().strftime('%d/%m/%Y'))
+
+
+
+
+    def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
         if re.search(r'^(Applied|Interview|Accepted|Rejected)$', status):
-            return status
-        return False
+            return True
+        elif status == "":
+            print("Status cannot be empty. Enter a valid status (Applied / Interview / Offer / Rejected).")
+            return True
+        return status
     
     def Validate_Email(self, email):                                        # Ensures the email is a valid email
         if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
             return True
-        return False
+        return email
     
-    def Validate_Date(self, date):                                          # Ensures the date is in a valid format
-        try:
-            datetime.strptime(date, "%Y-%m-%d")
-            return True
-        except ValueError:
-            return False
-
     def add_app(self):
         while True:
             company = input("Company Name: ")
-            if company == "":
-                print("Company name cannot be empty. Enter a valid company name.")
-            else:
+            if self.Validate_Company(company):
                 break
-        
+
         while True:
             title = input("Job Title: ")
-            if title == "":
-                print("Job title cannot be empty. Enter a valid job title.")
-            else:
+            if self.Validate_Job_Title(title):
                 break
 
         while True:
             date = input("Application Date: ")
-            if date == "":
-                print("Application date cannot be empty. Enter a valid date in the format YYYY-MM-DD.")
-            elif not self.Validate_Date(date):
-                print("Invalid date format. Please enter a date in the format YYYY-MM-DD.")
-            else:
+            if self.Validate_Application_Date(date):
                 break
 
         while True:
             status = input("Status (Applied / Interview / Offer / Rejected): ")
             if self.Validate_Status(status):
                 break
-            else:
-                print("Invalid status. Please enter one of the following: Applied, Interview, Offer, Rejected.")
         
         
         while True:
             email = input("Email Contact: ")
-            if email == "":
-                print("Email contact cannot be empty. Enter a valid email address.")
-            elif not self.Validate_Email(email):
-                print("Invalid email format. Enter a valid email address.")
-            else:
+            if self.Validate_Email(email):
                 break
             
         while True:
@@ -81,6 +97,8 @@ class Opperations:
 
         appended_app = Application_Format(company, title, date, status, email, notes)
         self.application.append(appended_app)
+        print("Application added successfully.")
+        print(self.application[0].format()) # For testing purposes, to show the application has been added to the list
 
     def view_app(self):
         print("View")
