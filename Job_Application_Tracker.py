@@ -1,4 +1,5 @@
 import csv # for handling CSV files
+from operator import index
 import re  # for REGEX
 from datetime import datetime # for handling dates
 
@@ -103,10 +104,20 @@ class Opperations:
             return
         else:
             for app in self.application:
-                print(f"[{app.index}] {app.company} | {app.title} | {app.status} | {app.date}")
+                print(f"[{app.index}] {app.company} | {app.title} | {app.status} | {app.date} | {app.email} | {app.notes}")
 
     def search_app(self):
-        print("Search")
+        if len(self.application) == 0:
+            print("No unsaved applications to search.")
+            return
+        search = input("Enter a search term (Company, Job Title, Status, etc.): ").lower()
+        found = [app for app in self.application if search in app.company.lower() or search in app.title.lower() or search in app.status.lower() or search in app.date.lower() or search in app.email.lower() or search in app.notes.lower()]
+        
+        if found:
+            for app in found:
+                print(f"[{app.index}] {app.company} | {app.title} | {app.status} | {app.date} | {app.email} | {app.notes}")
+        else:
+            print("No applications found matching the search term.")
 
     def update_app(self):
         self.view_app()
@@ -118,7 +129,13 @@ class Opperations:
             if index < 1 or index > len(self.application):
                 print("Invalid number. Please enter a valid number from the list.")
                 return
-            app = self.application[index]
+            elif index > 0 and index <= len(self.application):
+                new_status = input("Enter the new status (Applied / Interview / Offer / Rejected): ")
+                if self.Validate_Status(new_status):
+                    self.application[index - 1].status = new_status
+                    print("Status updated successfully.")
+                else:
+                    print("Invalid status. Status not updated.")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
             return
@@ -131,10 +148,27 @@ class Opperations:
             print("Invalid status. Status not updated.")
 
     def save_app(self):
-        print("Save")
+        if len(self.application) == 0:
+            print("No unsaved applications to save.")
+            return
+        with open("Job_Applications.csv", "a", newline= "") as file:
+            writer = csv.writer(file)
+            for app in self.application:
+                writer.writerow(app.format())
+        print("Applications saved successfully.")
 
     def load_app(self):
-        print("Load")
+        try:
+            with open("Job_Applications.csv", "r") as file:
+                reader = csv.reader(file)
+                self.application = []
+                [index, company, title, date, status, email, notes] = row
+                for row in reader:
+                    loaded_app = Application_Format(index, company, title, date, status, email, notes)
+                    self.application.append(loaded_app)
+            print("Applications loaded successfully.")
+        except FileNotFoundError:
+            print("No saved applications found. Please save applications before trying to load.")
 
 def main():
 
