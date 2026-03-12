@@ -26,7 +26,12 @@ class Opperations:
         return False
 
     def add_app(self):
-        print("Add")
+        company = input("Company Name: ")
+        title = input("Job Title: ")
+        date = input("Application Date: ")
+        status = input("Status (Applied / Interview / Offer / Rejected): ")
+        email = input("Email Contact: ")
+        notes = input("Notes: ")
         
     def view_app(self):
         print("View")
