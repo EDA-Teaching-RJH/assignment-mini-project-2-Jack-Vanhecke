@@ -3,7 +3,8 @@ import re  # for REGEX
 from datetime import datetime # for handling dates
 
 class Application_Format:
-    def __init__(self, company, title, date, status, email, notes):
+    def __init__(self, index, company, title, date, status, email, notes):
+        self.index = index
         self.company = company
         self.title = title
         self.date = date
@@ -12,7 +13,7 @@ class Application_Format:
         self.notes = notes
 
     def format(self):
-        return[self.company, self.title, self.date, self.status, self.email, self.notes]
+        return[self.index, self.company, self.title, self.date, self.status, self.email, self.notes]
 
 class Opperations:
 
@@ -86,7 +87,8 @@ class Opperations:
         
         notes = input("Notes: ")
 
-        appended_app = Application_Format(company, title, date, status, email, notes)
+        index = len(self.application) + 1
+        appended_app = Application_Format(index, company, title, date, status, email, notes)
         self.application.append(appended_app)
         print("Application added successfully.")
 
@@ -95,21 +97,27 @@ class Opperations:
             print("No unsaved applications to view.")
             return
         else:
-            for _ in range(len(self.application)):
-                print(self.application[_].format())
-            return
+            for app in self.application:
+                print(f"[{app.index}] {app.company} | {app.title} | {app.status} | {app.date}")
 
     def search_app(self):
         print("Search")
 
     def update_app(self):
         self.view_app()
+        if len(self.application) == 0:
+            print("No unsaved applications to update.")
+            return
         try:
             index = int(input("Enter the number of the job application you want to update: "))
-            app = self.applications[index]
-        except:
+            if index < 1 or index > len(self.application):
+                print("Invalid number. Please enter a valid number from the list.")
+                return
+            app = self.application[index]
+        except ValueError:
             print("Invalid input. Please enter a valid number.")
             return
+
         new_status = input("Enter the new status (Applied / Interview / Offer / Rejected): ")
         if self.Validate_Status(new_status):
             app.status = new_status
