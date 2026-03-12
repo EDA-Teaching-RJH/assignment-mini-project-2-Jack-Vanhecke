@@ -1,5 +1,6 @@
 import csv # for handleing CSV files
 import re  # for REGEX
+from datetime import datetime # for handling dates
 
 class Application_Format:
     def __init__(self, company, title, date, status, email, notes):
@@ -15,6 +16,8 @@ class Application_Format:
 
 class Opperations:
 
+    application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
+
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as valid
         if re.search(r'^(Applied|Interview|Accepted|Rejected)$', status):
             return status
@@ -24,15 +27,61 @@ class Opperations:
         if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
             return True
         return False
+    
+    def Validate_Date(self, date):                                          # Ensures the date is in a valid format
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
 
     def add_app(self):
-        company = input("Company Name: ")
-        title = input("Job Title: ")
-        date = input("Application Date: ")
-        status = input("Status (Applied / Interview / Offer / Rejected): ")
-        email = input("Email Contact: ")
-        notes = input("Notes: ")
+        while True:
+            company = input("Company Name: ")
+            if company == "":
+                print("Company name cannot be empty. Enter a valid company name.")
+            else:
+                break
         
+        while True:
+            title = input("Job Title: ")
+            if title == "":
+                print("Job title cannot be empty. Enter a valid job title.")
+            else:
+                break
+
+        while True:
+            date = input("Application Date: ")
+            if date == "":
+                print("Application date cannot be empty. Enter a valid date in the format YYYY-MM-DD.")
+            elif not self.Validate_Date(date):
+                print("Invalid date format. Please enter a date in the format YYYY-MM-DD.")
+            else:
+                break
+
+        while True:
+            status = input("Status (Applied / Interview / Offer / Rejected): ")
+            if self.Validate_Status(status):
+                break
+            else:
+                print("Invalid status. Please enter one of the following: Applied, Interview, Offer, Rejected.")
+        
+        
+        while True:
+            email = input("Email Contact: ")
+            if email == "":
+                print("Email contact cannot be empty. Enter a valid email address.")
+            elif not self.Validate_Email(email):
+                print("Invalid email format. Enter a valid email address.")
+            else:
+                break
+            
+        while True:
+            notes = input("Notes: ")
+
+        appended_app = Application_Format(company, title, date, status, email, notes)
+        self.application.append(appended_app)
+
     def view_app(self):
         print("View")
 
