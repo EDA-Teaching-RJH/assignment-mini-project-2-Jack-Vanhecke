@@ -15,13 +15,12 @@ class Application_Format:
 
 class Opperations:
 
-    def Validate_Status(self, status):
-        if status == "Applied" or status == "Interview" or status == "Accepted" or status == "Rejected":
+    def Validate_Status(self, status):                                      #Ensures the application Status is deemed as valid
+        if re.search(r'^(Applied|Interview|Accepted|Rejected)$', status):
             return status
-        else:
-            return False
-        
-    def Validate_Email(self, email):
+        return False
+    
+    def Validate_Email(self, email):                                        # Ensures the email is a valid email
         if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
             return True
         return False
