@@ -141,15 +141,28 @@ class Operations:
             return
 
     def save_app(self):
+        temp_application = []
+        try:
+            with open("Job_Applications.csv", "r") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    temp_application.append(row)
+        except FileNotFoundError:
+            print("File not found.")
+            pass
+
         if len(self.application) == 0:
             print("No unsaved applications to save.")
             return
-        with open("Job_Applications.csv", "a", newline= "") as file:
+
+        for app in self.application:
+            temp_application.append(app) # takes the "new" applications the user inputs, and stores them in temp_applications
+        
+        with open("Job_Applications.csv", "w", newline= "") as file:
             writer = csv.writer(file)
-            for app in self.application:
-                writer.writerow(app.format())
-                self.application.clear()
-        print("Applications saved successfully.")
+            for row in temp_application:
+                writer.writerow(row)
+        print("Applications saved to file.")
 
     def load_app(self):
         try:
