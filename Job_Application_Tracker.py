@@ -15,7 +15,7 @@ class Application_Format:
     def format(self):
         return[self.index, self.company, self.title, self.date, self.status, self.email, self.notes]
 
-class Opperations:
+class Operations:
 
     application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
 
@@ -165,7 +165,7 @@ class Opperations:
 
 def main():
 
-    Changes = Opperations()
+    Changes = Operations()
 
     while True:                              # Loops the code indefinitely, unless exit option is entered
 
