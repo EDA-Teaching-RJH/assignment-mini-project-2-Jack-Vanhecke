@@ -156,7 +156,7 @@ class Operations:
             return
 
         for app in self.application:
-            temp_application.append(app) # takes the "new" applications the user inputs, and stores them in temp_applications
+            temp_application.append(app.format()) # takes the "new" applications the user inputs, and stores them in temp_applications
         
         with open("Job_Applications.csv", "w", newline= "") as file:
             writer = csv.writer(file)
