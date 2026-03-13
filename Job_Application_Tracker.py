@@ -155,8 +155,8 @@ class Opperations:
             with open("Job_Applications.csv", "r") as file:
                 reader = csv.reader(file)
                 self.applications = []
-                [index, company, title, date, status, email, notes] = row
                 for row in reader:
+                    [index, company, title, date, status, email, notes] = row
                     loaded_app = Application_Format(index, company, title, date, status, email, notes)
                     self.application.append(loaded_app)
             print("Applications loaded successfully.")
