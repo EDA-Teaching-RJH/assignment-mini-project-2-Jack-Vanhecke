@@ -17,7 +17,8 @@ class Application_Format:
 
 class Operations:
 
-    application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
+    def __init__(self):
+        self.application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
 
     def Validate_Company(self, company):                                    #Ensures the company name is not empty
         if company == "":
@@ -160,6 +161,7 @@ class Operations:
             for row in temp_application:
                 writer.writerow(row)
         print("Applications saved to file.")
+        self.application = [] # Wiping the unsaved application list, as they have now been saved to the csv file
 
     def load_app(self):
         try:
