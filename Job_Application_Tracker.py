@@ -133,19 +133,12 @@ class Opperations:
                 if self.Validate_Status(new_status):
                     self.application[index - 1].status = new_status
                     print("Status updated successfully.")
+                    index = 0 #Changes the value of the index variable to prevent the loop from continuing to run and asking for a new status.
                 else:
                     print("Invalid status. Status not updated.")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
             return
-
-        new_status = input("Enter the new status (Applied / Interview / Offer / Rejected): ")
-        if self.Validate_Status(new_status):
-            self.application[index].status = new_status
-            print("Status updated successfully.")
-            break
-        else:
-            print("Invalid status. Status not updated.")
 
     def save_app(self):
         if len(self.application) == 0:
