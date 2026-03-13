@@ -18,7 +18,7 @@ class Application_Format:
 class Operations:
 
     def __init__(self):
-        self.application = [] # List to store the volitile application data, stored in terminal temporarily not in csv file
+        self.application = [] # List to store the volatile application data, stored in terminal temporarily not in csv file
 
     def Validate_Company(self, company):                                    #Ensures the company name is not empty
         if company == "":
