@@ -58,7 +58,9 @@ class Operations:
             return True
         elif email == "":
             print("Email cannot be empty. Enter a valid email address.")
-        return False
+        else:
+            print("Invalid email format. Enter a valid email address.")
+            return False
     
     def add_app(self):                                                      # Adds a job application to the application list, with all the required data points, and validates each input to ensure it is acceptable and makes logical sense
         while True:
