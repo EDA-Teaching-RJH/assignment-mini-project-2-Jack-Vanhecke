@@ -22,7 +22,7 @@ class Operations:
     def Validate_Company(self, company):                                    #Ensures the company name is not empty
         if company == "":
             print("Company name cannot be empty. Enter a valid company name.")
-            return company
+            return False
         return True
     
     def Validate_Job_Title(self, title):                                    #Ensures the job title is not empty
