@@ -76,7 +76,6 @@ class Operations:
                 date = datetime.now().strftime("%d-%m-%Y")              # datetime.now() gets the current date and time, .strftime() formats it to the specified format (DD-MM-YYYY in this case)
                 break
             elif self.Validate_Application_Date(date):
-                date = self.Validate_Application_Date(date)
                 break
 
         while True:
