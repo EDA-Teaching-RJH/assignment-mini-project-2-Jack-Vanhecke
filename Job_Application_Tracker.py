@@ -1,5 +1,4 @@
 import csv # for handling CSV files
-from operator import index
 import re  # for REGEX
 from datetime import datetime # for handling dates
 
