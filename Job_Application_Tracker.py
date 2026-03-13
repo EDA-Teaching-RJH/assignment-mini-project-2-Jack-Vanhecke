@@ -131,7 +131,6 @@ class Operations:
                 if self.Validate_Status(new_status):
                     self.application[index - 1].status = new_status
                     print("Status updated successfully.")
-                    index = 0 #Changes the value of the index variable to prevent the loop from continuing to run and asking for a new status.
                 else:
                     print("Invalid status. Status not updated.")
         except ValueError:
