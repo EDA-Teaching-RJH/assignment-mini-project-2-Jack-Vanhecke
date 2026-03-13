@@ -28,7 +28,7 @@ class Operations:
     def Validate_Job_Title(self, title):                                    #Ensures the job title is not empty
         if title == "":
             print("Job title cannot be empty. Enter a valid job title.")
-            return title
+            return False
         return True
     
     def Validate_Application_Date(self, date): 
@@ -44,7 +44,7 @@ class Operations:
 
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
         if re.search(r'^(Applied|Interview|Offer|Rejected)$', status):
-            return status
+            return True
         elif status == "":
             print("Status cannot be empty. Enter a valid status (Applied / Interview / Offer / Rejected).")
             return False
@@ -54,11 +54,10 @@ class Operations:
     
     def Validate_Email(self, email):                                        # Ensures the email is a valid email
         if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
-            return email
+            return True
         elif email == "":
             print("Email cannot be empty. Enter a valid email address.")
-            return email
-        return True
+            return False
     
     def add_app(self):                                                      # Adds a job application to the application list, with all the required data points, and validates each input to ensure it is acceptable and makes logical sense
         while True:
