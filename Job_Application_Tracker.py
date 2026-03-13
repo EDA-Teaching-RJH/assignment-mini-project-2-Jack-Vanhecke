@@ -43,12 +43,14 @@ class Opperations:
         return True
 
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
-        if re.search(r'^(Applied|Interview|Accepted|Rejected)$', status):
+        if re.search(r'^(Applied|Interview|Offer|Rejected)$', status):
             return status
         elif status == "":
             print("Status cannot be empty. Enter a valid status (Applied / Interview / Offer / Rejected).")
-            return status
-        return True
+            return False
+        else:
+            print("Status is invalid. Enter a valid staus (Applied / Interview / Offer / Rejected).")
+            return False
     
     def Validate_Email(self, email):                                        # Ensures the email is a valid email
         if re.search(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
@@ -158,7 +160,7 @@ class Opperations:
         try:
             with open("Job_Applications.csv", "r") as file:
                 reader = csv.reader(file)
-                self.application = []
+                self.applications = []
                 [index, company, title, date, status, email, notes] = row
                 for row in reader:
                     loaded_app = Application_Format(index, company, title, date, status, email, notes)
