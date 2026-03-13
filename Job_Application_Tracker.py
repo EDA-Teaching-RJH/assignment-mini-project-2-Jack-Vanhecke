@@ -143,6 +143,7 @@ class Opperations:
         if self.Validate_Status(new_status):
             self.application[index].status = new_status
             print("Status updated successfully.")
+            break
         else:
             print("Invalid status. Status not updated.")
 
