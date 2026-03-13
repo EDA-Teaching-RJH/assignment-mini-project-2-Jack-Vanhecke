@@ -31,16 +31,16 @@ class Opperations:
             return title
         return True
     
-    def Validate_Application_Date(self, date):                              #Ensures the application date is not empty and in a valid format
-        try:
-            datetime.strptime(date, "%d-%m-%Y")                             # Checks if the date is in the correct format (DD-MM-YYYY)
-        except ValueError:
-            print("Invalid date format. Use the format DD-MM-YYYY.")
-            return False
+    def Validate_Application_Date(self, date): 
         if date == "":
             print("Application date cannot be empty. Enter a valid date in the format DD-MM-YYYY.")
-            return False
-        
+            return False                  
+        try:
+            datetime.strptime(date, "%d-%m-%Y")
+            return True                             # Checks if the date is in the correct format (DD-MM-YYYY)
+        except ValueError:
+            print("Invalid date format. Use the format DD-MM-YYYY.")
+            return False        
 
     def Validate_Status(self, status):                                      #Ensures the application Status is deemed as a valid status (Applied, Interview, Offer, Rejected)
         if re.search(r'^(Applied|Interview|Offer|Rejected)$', status):
