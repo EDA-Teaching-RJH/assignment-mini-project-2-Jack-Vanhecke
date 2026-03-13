@@ -148,6 +148,7 @@ class Operations:
             writer = csv.writer(file)
             for app in self.application:
                 writer.writerow(app.format())
+                self.application.clear()
         print("Applications saved successfully.")
 
     def load_app(self):
