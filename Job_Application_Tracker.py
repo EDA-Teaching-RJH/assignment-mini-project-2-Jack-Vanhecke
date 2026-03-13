@@ -168,7 +168,7 @@ class Operations:
         try:
             with open("Job_Applications.csv", "r") as file:
                 reader = csv.reader(file)
-                self.applications = []
+                self.application = []
                 for row in reader:
                     [index, company, title, date, status, email, notes] = row
                     loaded_app = Application_Format(index, company, title, date, status, email, notes)
