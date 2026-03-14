@@ -15,6 +15,22 @@ def test_validate_company():
     except AssertionError:
         print("Should fail")
 
+def test_validate_job_title():
+
+    d
+
+def test_validate_application_date():
+
+    d
+
+def test_validate_status():
+
+    d
+
+def test_validate_email():
+
+    d
+
 def main():
 
     for i in range(5):
@@ -24,5 +40,9 @@ def main():
 
     time.sleep(3)
     test_validate_company()
+    test_validate_job_title()
+    test_validate_application_date()
+    test_validate_status()
+    test_validate_email()
 
 main()
