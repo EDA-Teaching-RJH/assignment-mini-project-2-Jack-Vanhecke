@@ -54,15 +54,15 @@ def test_validate_application_date():
     except AssertionError:
         print("TEST FAILED: Should fail")
 
-    try:    # Test invalid application date
+    try:    # Test invalid application date - Not Leap Year
         assert operations.Validate_Application_Date("31-02-2029") == False
     except AssertionError:
         print("TEST FAILED: Should fail")
 
-    try:    # Test invalid application date
-        assert operations.Validate_Application_Date("29-02-2024") == False
+    try:    # Test valid application date - Leap Year
+        assert operations.Validate_Application_Date("29-02-2024") == True
     except AssertionError:
-        print("TEST FAILED: Should fail")
+        print("TEST FAILED: Valid application date failed")
 
     try:    # Test invalid application date
         assert operations.Validate_Application_Date("35-05-2024") == False
@@ -195,7 +195,7 @@ def test_validate_email():
 
 def main():
 
-    for i in range(5):
+    for i in range(0):
         print("Running tests...")
         time.sleep(1)
         i += 1
