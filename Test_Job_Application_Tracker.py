@@ -1,4 +1,5 @@
 import Job_Application_Tracker
+import time
 
 operations = Job_Application_Tracker.Operations()
 
@@ -14,4 +15,14 @@ def test_validate_company():
     except AssertionError:
         print("Should fail")
 
-test_validate_company()
+def main():
+
+    for i in range(5):
+        print("Running tests...")
+        time.sleep(1)
+        i += 1
+
+    time.sleep(3)
+    test_validate_company()
+
+main()
